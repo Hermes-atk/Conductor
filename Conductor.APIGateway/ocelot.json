@@ -1,0 +1,103 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/system",
+            "DownstreamPathTemplate": "/api/system",
+            "UpstreamHttpMethod": [ "GET" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10001 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/system/{everything}",
+            "DownstreamPathTemplate": "/api/system/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10001 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/permission",
+            "DownstreamPathTemplate": "/api/permission",
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10001 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/permission/{everything}",
+            "DownstreamPathTemplate": "/api/permission/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10001 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/tracking",
+            "DownstreamPathTemplate": "/api/tracking",
+            "UpstreamHttpMethod": [ "GET" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10002 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/tracking/{everything}",
+            "DownstreamPathTemplate": "/api/tracking/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10002 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/log",
+            "DownstreamPathTemplate": "/api/log",
+            "UpstreamHttpMethod": [ "GET" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10002 //下游端口号
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/log/{everything}",
+            "DownstreamPathTemplate": "/api/log/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ], //上下游支持请求方法
+            "DownstreamScheme": "http", //下游服务配置
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost", //下游地址
+                    "Port": 10002 //下游端口号
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:10000/"
+    }
+}
