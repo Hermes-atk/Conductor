@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Conductor.Common;
 
 namespace Conductor.SystemAPIService
 {
@@ -28,7 +29,7 @@ namespace Conductor.SystemAPIService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +45,8 @@ namespace Conductor.SystemAPIService
                 endpoints.MapControllers();
                 //endpoints.MapControllerRoute(name: "default", pattern: "{controller=System}/{action=Get}/{id?}");
             });
-        }
+
+			app.RegisterConsul(Configuration, lifetime);
+		}
     }
 }

@@ -29,21 +29,20 @@ namespace Conductor.APIGateway
         {
             services.AddControllers();
             services.AddOcelot(new ConfigurationBuilder().
-                AddJsonFile("ocelot.json", true, true).Build());
+                AddJsonFile("ocelot.json", true, true).Build()).AddConsul();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseOcelot();
+            app.UseOcelot().Wait();
 
             app.UseRouting();
-
 
             app.UseAuthorization();
 
@@ -51,6 +50,8 @@ namespace Conductor.APIGateway
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }
