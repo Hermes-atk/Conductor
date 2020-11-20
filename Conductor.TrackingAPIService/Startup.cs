@@ -45,7 +45,7 @@ namespace Conductor.TrackingAPIService
                 endpoints.MapControllers();
             });
 
-			app.RegisterConsul(Configuration, lifetime);
-		}
+            app.RegisterConsul(Configuration, lifetime);
+        }
     }
 }
