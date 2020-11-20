@@ -8,4 +8,8 @@
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Conductor.Common\Conductor.Common.csproj" />
+  </ItemGroup>
+
 </Project>

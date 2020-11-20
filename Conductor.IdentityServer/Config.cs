@@ -11,7 +11,7 @@ namespace Conductor.IdentityServer
 {
     public static class Config
     {
-        public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope> { new ApiScope("api1", "api2") };
+        public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope> { new ApiScope("Conductor.SystemAPIService", "Conductor.TrackingAPIService") };
 
         //public static IEnumerable<IdentityResource> IdentityResources =>
         //    new List<IdentityResource>
@@ -19,11 +19,25 @@ namespace Conductor.IdentityServer
         //        new IdentityResources.OpenId(),
         //        new IdentityResources.Profile()
         //    };
+
+        /// <summary>
+        /// 需要保护的Api资源
+        /// 4.x版本新增后续Scopes的配置
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            List<ApiResource> resources = new List<ApiResource>();
+            //ApiResource第一个参数是ServiceName，第二个参数是描述
+            resources.Add(new ApiResource("Conductor.SystemAPIService", "GoodsService服务需要保护哦") { Scopes = { "Conductor.SystemAPIService" } });
+            return resources;
+        }
+
         public static IEnumerable<ApiResource> GetApis()
         {
             return new ApiResource[] {
              //secretapi:标识名称，Secret Api：显示名称，可以自定义
-             new ApiResource("api1","api2")
+             new ApiResource("Conductor.SystemAPIService","Conductor.TrackingAPIService")
          };
         }
         public static IEnumerable<Client> Clients => new List<Client>
@@ -39,8 +53,8 @@ namespace Conductor.IdentityServer
                     new Secret("secret".Sha256())
                 },
                 // scopes that client has access to
-                AllowedScopes = { "api1" }
-            }
+                AllowedScopes = { "Conductor.SystemAPIService" }
+            },
             //new Client
             //{
             //    ClientId="client",
@@ -49,14 +63,14 @@ namespace Conductor.IdentityServer
             //    ClientSecrets={ new Secret("secret".Sha256())},
             //    AllowedScopes={ "api1", "api2" }
             //},
-            //new Client
-            //{
-            //    ClientId="clientPwd",
-            //    AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
+            new Client
+            {
+                ClientId="clientPwd",
+                AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
 
-            //    ClientSecrets={ new Secret("secret".Sha256())},
-            //    AllowedScopes={ "api1", "api2" }
-            //},
+                ClientSecrets={ new Secret("secret".Sha256())},
+                AllowedScopes={ "Conductor.SystemAPIService", "Conductor.TrackingAPIService" }
+            },
             //new Client()
             //    {
             //        //客户端Id

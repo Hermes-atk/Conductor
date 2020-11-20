@@ -21,15 +21,15 @@ namespace Conductor.IdentityServer
             var builder = services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 //.AddInMemoryIdentityResources(Config.IdentityResources)
-                //.AddInMemoryApiResources(Config.GetApis())
+                .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddTestUsers(Config.GetTestUsers());
 
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
-            //});
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +41,7 @@ namespace Conductor.IdentityServer
             }
             //访问wwwroot目录静态文件
             app.UseStaticFiles();
-            //app.UseCookiePolicy();
+            app.UseCookiePolicy();
             app.UseRouting();
             app.UseIdentityServer();
 
